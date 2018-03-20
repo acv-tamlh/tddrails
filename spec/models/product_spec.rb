@@ -13,5 +13,18 @@ RSpec.describe Product, type: :model do
       product.save
       expect(product.description).to eq 'this is description'
     end
+    it "validate lowercase title product" do
+      product = Product.new(title: 'TEST', description: 'this is description', price: 12)
+      product.save
+      # byebug
+      expect(product.title).to eq 'test'
+    end
+
+    it "validate title shotter than description" do
+      product = Product.new(title: 'test asd ad asd asd asd ', description: 'this is description', price: 12)
+      product.save
+      # byebug
+      expect(product.errors.messages).to include(description: ["cant be shorter than title"])
+    end
   end
 end
