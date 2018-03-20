@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   validate :title_is_shorter_than_description
 
   before_save :strip_html_description, :to_lower_case_title
-  belongs_to :category
+  belongs_to :category, optional: false
 
   def strip_html_description
     self.description = ActionView::Base.full_sanitizer.sanitize(self.description)
