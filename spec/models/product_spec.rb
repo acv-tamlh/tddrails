@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  it 'validates the presence of title' do
-    product = Product.new(title: '')
-    product.validate
-    expect(product.errors.messages).to include(title: ['can\'t be blank'])
-  end
+  it {should validate_presence_of(:title)}
+  it {should validate_presence_of(:description)}
+  it {should validate_presence_of(:price)}
+  it {should validate_numericality_of(:price).is_greater_than(0)}
+
 end
