@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320082613) do
+ActiveRecord::Schema.define(version: 20180320084155) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", limit: 255
+  end
 
   create_table "products", force: :cascade do |t|
     t.string  "title",       limit: 255
     t.string  "description", limit: 255
     t.decimal "price",                   precision: 10
+    t.integer "category_id", limit: 4
   end
+
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
 end
