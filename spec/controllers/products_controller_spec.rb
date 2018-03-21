@@ -17,7 +17,7 @@ RSpec.describe ProductsController, type: :controller do
   end
   describe '#create' do
 
-    context 'save sucess' do
+    context 'save product' do
       it 'save product' do
         expect{
           post :create, params: { product: FactoryBot.attributes_for(:product) }
@@ -27,6 +27,17 @@ RSpec.describe ProductsController, type: :controller do
         expect {
           post :create, params: { product: FactoryBot.attributes_for(:product, title: '') }
          }.to change(Product, :count).by(0)
+      end
+    end
+    context 'redirect new product' do
+      it 'save sucessfully' do
+        post :create, params: { product: FactoryBot.attributes_for(:product)}
+        expect(response).to redirect_to products_path
+      end
+      it 'save fail' do
+        post :create, params: { product: FactoryBot.attributes_for(:product, price: 0)}
+        # byebug
+        expect(response).to render_template :new
       end
     end
   end

@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # byebug
     @product = Product.new(product_params)
     return redirect_to products_url, notice: 'You have sucessfully created the product' if @product.save
     flash[:alert] = "Error in form 2"
