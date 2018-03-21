@@ -10,21 +10,37 @@ RSpec.describe ProductsController, type: :controller do
       # byebug
       expect(assigns(:products)).to eq products
     end
-    it 'render layout new' do
+    it 'render layout index' do
       get :index
-      response.should render_template :index
+      expect(response).to render_template :index
     end
   end
+  describe '#create' do
+
+    context 'save sucess' do
+      it 'save product' do
+        expect{
+          post :create, params: { product: FactoryBot.attributes_for(:product) }
+         }.to change(Product, :count).by(1)
+      end
+      it 'save product fail' do
+        expect {
+          post :create, params: { product: FactoryBot.attributes_for(:product, title: '') }
+         }.to change(Product, :count).by(0)
+      end
+    end
+  end
+
+
   describe '#edit' do
     let(:product) {create(:product)}
-
     it 'true id product' do
       get :edit, params: {id: product.id}
       expect(assigns(:product).id).to eq product.id
     end
     it 'render layout edit' do
       get :edit, params: {id: product.id}
-      response.should render_template :new
+      expect(response).to render_template :new
     end
   end
 end
