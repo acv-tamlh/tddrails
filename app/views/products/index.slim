@@ -1,0 +1,11 @@
+h1 Products#index
+p Find me in app/views/products/index.html.erb
+= link_to 'New', new_product_path
+table
+  tr
+    th Product Title
+    th Category
+    th Readmore
+    th Edit
+    th Delete
+    = render partial: 'product', collection: @products

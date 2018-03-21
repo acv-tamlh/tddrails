@@ -10,24 +10,21 @@ RSpec.describe ProductsController, type: :controller do
       # byebug
       expect(assigns(:products)).to eq products
     end
-  end
-  # describe "#new" do
-  #   before do
-  #     FactoryBot.create(:product)
-  #   end
-  #   it "permit param" do
-  #     Category.create(title: '1')
-  #     params = {
-  #       product: {
-  #         title: '123',
-  #         description: '1234',
-  #         price: 12,
-  #         category_id: 1
-  #       }
-  #     }
-  #     # byebug
-  #     should permit(:title, :description, :price, :category_id).
-  #           for(:create, params: params).on(:product)
-  #           end
-  #       end
+    it 'render layout new' do
+      get :index
+      response.should render_template :index
     end
+  end
+  describe '#edit' do
+    let(:product) {create(:product)}
+
+    it 'true id product' do
+      get :edit, params: {id: product.id}
+      expect(assigns(:product).id).to eq product.id
+    end
+    it 'render layout edit' do
+      get :edit, params: {id: product.id}
+      response.should render_template :new
+    end
+  end
+end

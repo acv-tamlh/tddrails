@@ -1,0 +1,33 @@
+h1
+  | Products#show
+p
+  | Find me in app/views/products/show.html.erb
+table
+  tr
+    th
+      | Product Title
+    th
+      | Category
+    th
+      | Price
+    th
+      | Country
+    th
+      | Level
+    th
+      | Published
+  tr
+    td
+      = @product.title
+    td
+      = @product.category.try(:title)
+    td
+      = @product.price
+    td
+      = @product.try(:country)
+    td
+      = @product.try(:level)
+    td
+      = @product.published
+    td
+      = link_to 'edit', edit_product_path

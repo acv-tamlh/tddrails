@@ -1,0 +1,13 @@
+h1
+  | Products#new
+p
+  | Find me in app/views/products/new.html.erb
+= semantic_form_for @product do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :price, min: 1
+  = f.input :country, as: :select
+  = f.input :level
+  = f.input :category
+  = f.input :published
+  = f.submit :submit
