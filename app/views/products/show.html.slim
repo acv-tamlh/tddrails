@@ -23,11 +23,11 @@ table
       = @product.category.try(:title)
     td
       = @product.price
-    td
-      = @product.try(:country)
-    td
-      = @product.try(:level)
-    td
-      = @product.published
-    td
-      = link_to 'edit', edit_product_path
+    / td
+    /   = @product.try(:country)
+    / td
+    /   = @product.try(:level)
+    / / td
+    /   / = @product.published
+    / / td
+    /   = link_to 'edit', edit_product_path
