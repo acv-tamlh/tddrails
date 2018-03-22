@@ -2,10 +2,11 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   describe '#index' do
     it "get list of product" do
-      products = []
-      Category.create(title: 'hell')
-      products << Product.create(title: '123', description: '1234', price: 12, category_id: Category.last.id)
-      products << Product.create(title: '123', description: '1234', price: 12, category_id: Category.last.id)
+      # products = []
+      products = create_list(:product, 5)
+      # Category.create(title: 'hell')
+      # products << Product.create(title: '123', description: '1234', price: 12, category_id: Category.last.id)
+      # products << Product.create(title: '123', description: '1234', price: 12, category_id: Category.last.id)
       get :index
       # byebug
       expect(assigns(:products)).to eq products
@@ -16,7 +17,6 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
   describe '#create' do
-
     context 'save product' do
       it 'save product' do
         expect{
@@ -41,10 +41,8 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
-
-
   describe '#edit' do
-    let(:product) {create(:product)}
+    let(:product) { create(:product) }
     it 'true id product' do
       get :edit, params: {id: product.id}
       expect(assigns(:product).id).to eq product.id
@@ -52,6 +50,17 @@ RSpec.describe ProductsController, type: :controller do
     it 'render layout edit' do
       get :edit, params: {id: product.id}
       expect(response).to render_template :new
+    end
+  end
+  describe '#show' do
+    let(:product2) { create(:product) }
+    it 'render tempalte show' do
+      get :show, params: {id: product2.id}
+      expect(response).to render_template :show
+    end
+    it 'assign id show' do
+      get :show, params: { id: product2.id }
+      expect(assigns(:product).id).to eq product2.id
     end
   end
 end
