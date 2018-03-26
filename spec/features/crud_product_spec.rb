@@ -22,7 +22,12 @@ describe 'CRUD product', type: :feature do
   it 'can delete product' do
     visit 'products/'
     first(:link, 'Delete').click
-    save_and_open_page
     expect(page).to have_content 'Delete sucessfully'
+  end
+  # let!(:products) { create_list(:product, 5) }
+  it 'can show product' do
+    visit 'products/'
+    first(:link, 'Readmore').click
+    expect(page).to have_content product.title
   end
 end
