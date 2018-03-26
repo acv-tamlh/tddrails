@@ -30,4 +30,5 @@ table
     / / td
     /   / = @product.published
     / / td
-    /   = link_to 'edit', edit_product_path
+    = link_to 'edit', edit_product_path
+    = link_to 'delete', product_path(@product)
