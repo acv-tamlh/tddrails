@@ -2,7 +2,6 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   describe '#index' do
     let!(:products1) { create_list(:product, 5) }
-    # byebug
     it "get list of product" do
       get :index
       expect(assigns(:products).size).to eq products1.size
@@ -59,4 +58,11 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product).id).to eq product2.id
     end
   end
+  describe '#delete' do
+    let!(:product) { create(:product) }
+    it 'delete' do
+      expect{delete :destroy, params: {id: product.id}}.to change(Product, :count).by(-1)
+    end
+  end
+
 end
