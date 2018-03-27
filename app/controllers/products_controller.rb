@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :getProduct, only: [:show, :edit, :update, :destroy]
   before_action :product_params, only: [:create, :update]
   def index
@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
                                                   :published,
                                                   :category_id,
                                                   :country,
-                                                  :level)
+                                                  :level,
+                                                  :image)
     end
 end

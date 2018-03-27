@@ -11,10 +11,10 @@ table
     th
       | Price
     th
-      | Country
-    th
-      | Level
-    th
+      | Image
+    / th
+    /   | Level
+    / th
       | Published
   tr
     td
@@ -23,12 +23,11 @@ table
       = @product.category.try(:title)
     td
       = @product.price
-    / td
-    /   = @product.try(:country)
-    / td
-    /   = @product.try(:level)
-    / / td
-    /   / = @product.published
-    / / td
+    td
+      / img{ src =@product.image.url{:thumb} }
+      = image_tag @product.image.url
+      / = image_tag @product.image.url(:thumb)
+      / = image_tag @product.image.url(:medium)
+
     = link_to 'edit', edit_product_path
     = link_to 'delete', product_path(@product)

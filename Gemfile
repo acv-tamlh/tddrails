@@ -38,7 +38,7 @@ gem 'countries'
 gem 'formtastic', '~> 3.0'
 gem 'rails_admin', '~> 1.3'
 gem 'devise'
-
+gem "paperclip", "~> 6.0.0"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'pry-byebug'
+  gem "awesome_print"
 end
 
 group :development do
